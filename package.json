@@ -17,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/jmcacioppo/CampusDirections/issues"
   },
-  "homepage": "https://github.com/jmcacioppo/CampusDirections#readme"
+  "homepage": "https://github.com/jmcacioppo/CampusDirections#readme",
+  "dependencies": {
+    "angular": "^1.6.8",
+    "angular-route": "^1.6.8"
+  }
 }
