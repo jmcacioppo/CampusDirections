@@ -1,0 +1,21 @@
+{
+  "name": "CampusDirections",
+  "version": "1.0.0",
+  "description": "Directions for two people who speak two different languages.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmcacioppo/CampusDirections.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jmcacioppo/CampusDirections/issues"
+  },
+  "homepage": "https://github.com/jmcacioppo/CampusDirections#readme"
+}
