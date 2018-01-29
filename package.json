@@ -20,6 +20,8 @@
   "homepage": "https://github.com/jmcacioppo/CampusDirections#readme",
   "dependencies": {
     "angular": "^1.6.8",
-    "angular-route": "^1.6.8"
+    "angular-chat": "^1.0.9",
+    "angular-route": "^1.6.8",
+    "rltm": "^1.3.1"
   }
 }

@@ -1,7 +1,9 @@
 'use strict';
+angular.module('campusDirections', ['chat'])
+    .controller('HomeController', HomeController);
 
-campusDirections.controller('HomeController',
-    function($scope) {
-        $scope.name = "Joseph";
-    }
-);
+HomeController.$inject = ['$scope', 'Messages'];
+
+function HomeController($scope, Messages) {
+    $scope.name = "Joseph";
+}
