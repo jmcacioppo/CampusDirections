@@ -1,6 +1,6 @@
 <center>
     <h3>Settings</h3>
-    <form ng-submit="saveChanges()">
+    <form ng-show="user.name">
         <div>
             <label for="name">Name:</label>
             <input type="text" ng-model="user.name"/>
@@ -14,8 +14,14 @@
             </select>
         </div>
         <br>
-        <button class="unselectedButton" type="submit">
+        <button class="unselectedButton" ng-click="back()">
+            Back
+        </button>
+        <button class="unselectedButton" ng-click="saveChanges()">
             Save
         </button>
     </form>
+    <p ng-hide="user.name">
+        No information saved yet.
+    </p>
 </center>

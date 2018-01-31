@@ -1,10 +1,15 @@
-campusDirections.controller('MessagesController', ['$scope', 'Messages',
-    function($scope, Messages) {
+campusDirections.controller('MessagesController', ['$scope', 'Messages', 'TransferData', 'Notification', '$location',
+    function($scope, Messages, TransferData, Notification, $location) {
+        $scope.user = TransferData.getUser();
+
         // Message Inbox 
         $scope.messages = [];
 
         // User 
-        Messages.user({ id: 12345, name : 'Joseph' });
+        Messages.user({ 
+            id: $scope.user.name, 
+            name : $scope.user.name 
+        });
 
         // Receive Messages 
         Messages.receive(function(message){
