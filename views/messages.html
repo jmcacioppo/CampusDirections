@@ -1,0 +1,10 @@
+<center>
+    Messages
+    <div ng-repeat="message in messages track by $index" ng-class="{'right': $index % 2 == 0}">
+		<strong>{{ message.user.name }}:</strong>
+		<span>{{ message.data }}</span>
+	</div>
+	<form ng-submit="send()">
+		<input ng-model="textbox">
+	</form>
+</center>
