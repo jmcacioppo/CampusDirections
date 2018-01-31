@@ -1,6 +1,6 @@
 'use strict';
 
-var campusDirections = angular.module('campusDirections', ['chat', 'ngRoute'])
+var campusDirections = angular.module('campusDirections', ['chat', 'ngRoute', 'ui-notification'])
     .config(function($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {

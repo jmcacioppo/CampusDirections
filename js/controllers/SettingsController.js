@@ -1,9 +1,10 @@
-campusDirections.controller('SettingsController', ['$scope',
-    function($scope) {
-        $scope.name = "Joseph";
+campusDirections.controller('SettingsController', ['$scope', 'TransferData', 'Notification',
+    function($scope, TransferData, Notification) {
+        $scope.user = TransferData.getUser();
 
         $scope.saveChanges = function() {
-            console.log($scope.name);
+            TransferData.setUser($scope.user);
+            Notification.success({ message: 'Successful!' });        
         }
     }
 ]);

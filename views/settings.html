@@ -3,12 +3,12 @@
     <form ng-submit="saveChanges()">
         <div>
             <label for="name">Name:</label>
-            <input type="text" ng-model="name"/>
+            <input type="text" ng-model="user.name"/>
         </div>
         <br>
         <div>
             <label for="language">Primary Language:</label>
-            <select name="" id="">
+            <select ng-model="user.language">
                 <option value="English">English</option>
                 <option value="Spanish">Spanish</option>
             </select>
