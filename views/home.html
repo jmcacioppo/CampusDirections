@@ -1,10 +1,33 @@
-<div>
-	<h2>Home - {{name}}</h2>
-	<div ng-repeat="message in messages track by $index" ng-class="{'right': $index % 2 == 0}">
-		{{ message.user.name }}:
-		{{ message.data }}
+<center>
+	<h3>What is your primary speaking language?</h3>
+	<select ng-change="selectLanguage()" ng-model="language">
+		<option value="English">English</option>
+		<option value="Spanish">Spanish</option>
+	</select>
+
+	<div ng-show='language'>
+		<h3>I want to...</h3>
+		<button ng-click="selectAction('receive')" ng-class="receiveClass">
+			Receive Directions
+		</button>
+		<button ng-click="selectAction('give')" ng-class="giveClass">
+			Give Directions
+		</button>
+
+		<br>
+
+		<button class="unselectedButton" style="margin-top: 20px">
+			Next
+		</button>
+	</div>
+	
+	
+
+	<!-- <div ng-repeat="message in messages track by $index" ng-class="{'right': $index % 2 == 0}">
+		<strong>{{ message.user.name }}:</strong>
+		<span>{{ message.data }}</span>
 	</div>
 	<form ng-submit="send()">
 		<input ng-model="textbox">
-	</form>
-</div>
+	</form> -->
+</center>

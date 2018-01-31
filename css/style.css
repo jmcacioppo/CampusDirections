@@ -1,7 +1,23 @@
-h1 {
-	color: blue;
+.right {
+	margin-left: 50px;
 }
 
-.right {
-	float: right;
+.selectedButton, .unselectedButton {
+	padding: 5px;
+	border-radius: 5%;
+	width: 125px;
+	height: 50px;
+}
+
+.unselectedButton {
+	background-color: #ECF0F1;
+}
+
+.selectedButton {
+	background-color: #7F8C8D;
+}
+
+.unselectedButton:hover {
+	background-color: #BDC3C7;
+	cursor: pointer;
 }
