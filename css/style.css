@@ -1,23 +1,36 @@
+html {
+	background-color: #d8f0e8;
+}
+
+.container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
 .right {
 	margin-left: 50px;
 }
 
 .selectedButton, .unselectedButton {
-	padding: 5px;
 	border-radius: 5%;
-	width: 125px;
-	height: 50px;
+	font-size: 1em;
+	height: 3em;
+	padding: 5px;
+	width: 7em;
 }
 
 .unselectedButton {
-	background-color: #ECF0F1;
+	background-color: #BDC3C7;
+	color: white;
 }
 
 .selectedButton {
 	background-color: #7F8C8D;
+	color: white;
 }
 
 .unselectedButton:hover {
-	background-color: #BDC3C7;
+	background-color: #95A5A6;
 	cursor: pointer;
 }

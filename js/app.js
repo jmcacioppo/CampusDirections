@@ -11,6 +11,10 @@ var campusDirections = angular.module('campusDirections', ['chat', 'ngRoute'])
                 templateUrl: 'views/messages.html',
                 controller: 'MessagesController'
             })
+            .when('/settings', {
+                templateUrl: 'views/settings.html',
+                controller: 'SettingsController'
+            })
             .otherwise({redirectTo: '/'});
         
         // Use the HTML5 History API
