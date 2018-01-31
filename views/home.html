@@ -1,3 +1,10 @@
-<div ng-controller="HomeController">
+<div>
 	<h2>Home - {{name}}</h2>
+	<div ng-repeat="message in messages track by $index" ng-class="{'right': $index % 2 == 0}">
+		{{ message.user.name }}:
+		{{ message.data }}
+	</div>
+	<form ng-submit="send()">
+		<input ng-model="textbox">
+	</form>
 </div>
