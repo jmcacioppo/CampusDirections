@@ -8,6 +8,10 @@ html {
 	justify-content: center;
 }
 
+.item {
+	padding: 15px;
+}
+
 .right {
 	margin-left: 50px;
 }

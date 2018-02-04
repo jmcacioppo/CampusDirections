@@ -1,26 +1,23 @@
 <center>
-	<h3>What is your first name?</h3>
-	<input type="text" ng-model="user.name"/>
-	
-	<h3>What is your primary speaking language?</h3>
-	<select ng-change="selectLanguage()" ng-model="user.language">
-		<option value="English">English</option>
-		<option value="Spanish">Spanish</option>
-	</select>
+	<div class="container">
+		<div class="item">
+			<h3>Language to <br> RECEIVE directions:</h3>
+			<select ng-model="receiveDirectionsLanguage">
+				<option value="English">English</option>
+				<option value="Spanish">Spanish</option>
+			</select>
+		</div>
 
-	<div ng-show='user.language'>
-		<h3>I want to...</h3>
-		<button ng-click="selectAction('receive')" ng-class="receiveClass">
-			Receive Directions
-		</button>
-		<button ng-click="selectAction('give')" ng-class="giveClass">
-			Give Directions
-		</button>
-
-		<br>
-
-		<button class="unselectedButton" ng-click="next()" style="margin-top: 20px">
-			Next
-		</button>
+		<div class="item">
+			<h3>Language to <br> GIVE directions:</h3>
+			<select ng-model="giveDirectionsLanguage">
+				<option value="English">English</option>
+				<option value="Spanish">Spanish</option>
+			</select>
+		</div>
 	</div>
+
+	<button class="unselectedButton" ng-click="next()" style="margin-top: 20px">
+		Next
+	</button>
 </center>

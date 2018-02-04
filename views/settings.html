@@ -1,17 +1,22 @@
 <center>
     <h3>Settings</h3>
-    <form ng-show="user.name">
-        <div>
-            <label for="name">Name:</label>
-            <input type="text" ng-model="user.name"/>
-        </div>
-        <br>
-        <div>
-            <label for="language">Primary Language:</label>
-            <select ng-model="user.language">
-                <option value="English">English</option>
-                <option value="Spanish">Spanish</option>
-            </select>
+    <form>
+        <div class="container">
+            <div class="item">
+                <h3>Language to <br> RECEIVE directions:</h3>
+                <select ng-model="user.receiveDirectionsLanguage">
+                    <option value="English">English</option>
+                    <option value="Spanish">Spanish</option>
+                </select>
+            </div>
+    
+            <div class="item">
+                <h3>Language to <br> GIVE directions:</h3>
+                <select ng-model="user.giveDirectionsLanguage">
+                    <option value="English">English</option>
+                    <option value="Spanish">Spanish</option>
+                </select>
+            </div>
         </div>
         <br>
         <button class="unselectedButton" ng-click="back()">
@@ -21,7 +26,4 @@
             Save
         </button>
     </form>
-    <p ng-hide="user.name">
-        No information saved yet.
-    </p>
 </center>
