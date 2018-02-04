@@ -3,7 +3,32 @@ campusDirections.controller('MessagesController', ['$scope', 'Messages', 'Transf
         $scope.user = TransferData.getUser();
         var host = '';
         var path = '';
-        
+
+        function setLanguageCode(language) {
+            var code = '';
+            
+            switch(language) {
+                case 'English': 
+                    code = 'en'; 
+                    break;
+                case 'Spanish': 
+                    code = 'es'; 
+                    break;
+            }
+
+            return code;
+        }
+
+        function setLanguages() {
+            var receiveLanguage = $scope.user.receiveLanguage;
+            var giveLanguage = $scope.user.giveLanguage;
+
+            var receiveCode = setLanguageCode(receiveLanguage);
+            var giveCode = setLanguageCode(giveLanguage);
+
+            console.log(receiveCode, giveCode);
+        }
+
         function setURL() {
             let target = 'fr-fr';
             let text = 'Hello';
@@ -29,6 +54,7 @@ campusDirections.controller('MessagesController', ['$scope', 'Messages', 'Transf
                 });
         }
         
+        setLanguages();
         setURL();
         TranslateText();
 
