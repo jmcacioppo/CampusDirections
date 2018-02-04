@@ -24,8 +24,11 @@ app.post('/api/translate', function(req, res) {
         });
 
         response.on ('end', function () {
-            console.log (body);
-            res.json(body);
+            // Regex to get rid of html tags
+            let cleanText = body.replace(/<\/?[^>]+(>|$)/g, "");
+
+            console.log (cleanText);
+            res.json(cleanText);
         });
 
         response.on ('error', function (e) {

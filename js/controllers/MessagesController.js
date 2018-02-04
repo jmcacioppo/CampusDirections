@@ -9,7 +9,7 @@ campusDirections.controller('MessagesController', ['$scope', 'Messages', 'Transf
             let text = 'Hello';
             let params = '?to=' + target + '&text=' + encodeURI(text);
             
-            host = 'https://api.microsofttranslator.com';
+            host = 'api.microsofttranslator.com';
             path = '/V2/Http.svc/Translate' + params;
         }
 
