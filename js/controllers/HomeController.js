@@ -1,5 +1,7 @@
 campusDirections.controller('HomeController', ['$scope', 'Messages', 'TransferData', 'Notification', '$location',
     function($scope, Messages, TransferData, Notification, $location) {
+        $scope.availableLanguages = ['Arabic', 'English', 'French', 'Italian', 'Portuguese', 'Spanish'];
+
         $scope.receiveDirectionsLanguage = 'English';
         $scope.giveDirectionsLanguage = 'Spanish';
 
