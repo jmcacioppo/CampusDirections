@@ -7,6 +7,8 @@ campusDirections.controller('HomeController', ['$scope', 'Messages', 'TransferDa
 
         $scope.next = function() {
             var user = {
+                receivingName: $scope.receivingName,
+                givingName: $scope.givingName,
                 receiveLanguage: $scope.receiveDirectionsLanguage,
                 giveLanguage: $scope.giveDirectionsLanguage
             }

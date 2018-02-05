@@ -1,25 +1,22 @@
 <center>
 	<div class="container">
 		<div class="item">
-			<h3>Language to <br> RECEIVE directions:</h3>
+			<h4>Name of person <br> RECEIVING directions</h4>
+			<input ng-model="receivingName"/>
+			<h4>What is your primary <br> speaking language</h4>
 			<select ng-model="receiveDirectionsLanguage">
-				<option ng-repeat="language in availableLanguages">
+				<option ng-repeat="language in availableLanguages" value="{{language}}">
 					{{language}}
 				</option>
-
-				<!-- <option value="Arabic">Arabic</option>
-				<option value="English">English</option>
-				<option value="French">French</option>
-				<option value="Italian">Italian</option>
-				<option value="Portuguese">Portuguese</option>
-				<option value="Spanish">Spanish</option> -->
 			</select>
 		</div>
 
 		<div class="item">
-			<h3>Language to <br> GIVE directions:</h3>
+			<h4>Name of person <br> GIVING directions</h4>
+			<input ng-model="givingName"/>
+			<h4>What is your primary <br> speaking language</h4>
 			<select ng-model="giveDirectionsLanguage">
-				<option ng-repeat="language in availableLanguages">
+				<option ng-repeat="language in availableLanguages" value="{{language}}">
 					{{language}}
 				</option>
 			</select>

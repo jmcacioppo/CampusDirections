@@ -1,18 +1,18 @@
 <center>
 	<h3>Messages</h3>
-	<label for="textToTranslate">Translate this:</label>
-	<input type="text" ng-model="textToTranslate"/>
-    <!-- <div ng-repeat="message in messages track by $index" ng-class="{'right': $index % 2 == 0}">
-		<strong>{{ message.user.name }}:</strong>
-		<span>{{ message.data }}</span>
+	<form ng-submit="translateText()">
+		<label for="textToTranslate">{{user.receivingName}}, where do you need directions to?</label>
+		<br>
+		<input type="text" ng-model="textToTranslate"/>
+		<br>
+		<button class="unselectedButton" type="submit">
+			Translate Text
+		</button>
+	</form>
+	<div ng-repeat="message in messages track by $index" ng-class="{'right': $index % 2 == 0}">
+		{{ message }}
 	</div>
-	<form ng-submit="send()">
-		<input ng-model="textbox">
-	</form> -->
-
-	<button class="unselectedButton">
-		Translate Text
-	</button>
+	<br>
 	<button class="unselectedButton" href="https://ufl.qualtrics.com/jfe/form/SV_3OTuo9bblZAOyON">
 		Complete Interaction
 	</button>

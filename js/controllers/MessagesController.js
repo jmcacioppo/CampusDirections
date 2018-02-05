@@ -1,5 +1,7 @@
 campusDirections.controller('MessagesController', ['$scope', 'Messages', 'TransferData', 'Notification', '$location', '$http', 'TRANSLATOR_SUBSCRIPTION',
     function($scope, Messages, TransferData, Notification, $location, $http, TRANSLATOR_SUBSCRIPTION) {        
+        // Message Inbox 
+        $scope.messages = [];
         $scope.user = TransferData.getUser();
         setLanguages();
 
@@ -35,8 +37,13 @@ campusDirections.controller('MessagesController', ['$scope', 'Messages', 'Transf
             return code;
         }
 
-        $scope.TranslateText = function() {
-            setURLForAPI();
+        $scope.translateText = function() {
+            var languageCode = '';
+            
+            if($scope.messages.length % 2 == 0) languageCode = $scope.receiveCode;
+            else languageCode = $scope.giveCode;
+            
+            setURLForAPI(languageCode, $scope.textToTranslate);
 
             var dataForPOST = {
                 key : TRANSLATOR_SUBSCRIPTION.key,
@@ -47,10 +54,9 @@ campusDirections.controller('MessagesController', ['$scope', 'Messages', 'Transf
             translateAPICall(dataForPOST);
         }
 
-        function setURLForAPI() {
-            let target = $scope.receiveCode;
-            //let target = 'fr-fr';
-            let text = $scope.textToTranslate;
+        function setURLForAPI(languageCode, textToTranslate) {
+            let target = languageCode;
+            let text = textToTranslate;
             let params = '?to=' + target + '&text=' + encodeURI(text);
             
             $scope.host = 'api.microsofttranslator.com';
@@ -60,32 +66,31 @@ campusDirections.controller('MessagesController', ['$scope', 'Messages', 'Transf
         function translateAPICall(dataForPOST) {
             $http.post('http://localhost:3000/api/translate', dataForPOST)
                 .then( (response) => {
-                    console.log(response);
+                    $scope.messages.push(response.data);
                 })
                 .catch( (err) => {
                     console.log(err);
                 });
         }
 
-        // Message Inbox 
-        $scope.messages = [];
+        
 
         // User 
-        Messages.user({ 
-            id: $scope.user.name, 
-            name : $scope.user.name 
-        });
+        // Messages.user({ 
+        //     id: $scope.user.name, 
+        //     name : $scope.user.name 
+        // });
 
-        // Receive Messages 
-        Messages.receive(function(message){
-            $scope.messages.push(message);
-            //message.remove();
-        });
+        // // Receive Messages 
+        // Messages.receive(function(message){
+        //     $scope.messages.push(message);
+        //     //message.remove();
+        // });
 
         // Send Messages 
-        $scope.send = function() {
-            Messages.send({ data : $scope.textbox });
-            $scope.textbox = '';
-        };
+        // $scope.send = function() {
+        //     Messages.send({ data : $scope.textbox });
+        //     $scope.textbox = '';
+        // };
     }
 ]);
