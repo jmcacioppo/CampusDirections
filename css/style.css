@@ -13,11 +13,8 @@ html {
 	width: 20%;
 }
 
-.receivingMessage, .givingMessage {
-	background-color: #95A5A6;
-	border-radius: 5%;
-	color: white;
-	padding: 5px;
+.directionsInputs {
+	width: 30%;
 }
 
 .right {

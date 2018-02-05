@@ -37,7 +37,7 @@ campusDirections.controller('MessagesController', ['$scope', 'Messages', 'Transf
             return code;
         }
 
-        function translateText(textToTranslate, receiverOrGiver) {
+        async function translateText(textToTranslate, receiverOrGiver) {
             var languageCode = '';
             
             if(receiverOrGiver == 'receiver') languageCode = $scope.giveCode;
@@ -51,7 +51,7 @@ campusDirections.controller('MessagesController', ['$scope', 'Messages', 'Transf
                 path: $scope.path
             }
             
-            translateAPICall(dataForPOST, textToTranslate, receiverOrGiver);
+            return await translateAPICall(dataForPOST, textToTranslate);
         }
 
         function setURLForAPI(languageCode, textToTranslate) {
@@ -63,20 +63,10 @@ campusDirections.controller('MessagesController', ['$scope', 'Messages', 'Transf
             $scope.path = '/V2/Http.svc/Translate' + params;
         }
         
-        function translateAPICall(dataForPOST, textToTranslate, receiverOrGiver) {
-            $http.post('http://localhost:3000/api/translate', dataForPOST)
+        async function translateAPICall(dataForPOST, textToTranslate) {
+            return await $http.post('http://localhost:3000/api/translate', dataForPOST)
                 .then( (response) => {
-                    if(receiverOrGiver == 'receiver') {
-                        $scope.stepsTranslated.push(response.data);
-                    }
-                    else {
-                        $scope.givingMessages.push({
-                            'originalText': textToTranslate,
-                            'translatedText': response.data
-                        });
-
-                        $scope.giverTextToTranslate = '';
-                    }
+                    return response.data;
                 })
                 .catch( (err) => {
                     console.log(err);
@@ -85,20 +75,14 @@ campusDirections.controller('MessagesController', ['$scope', 'Messages', 'Transf
 
         $scope.directionsRequested = false;
         $scope.ifStepsTranslated = false;
-        $scope.directionsRequest = function() {
-            $scope.directionsRequested = true;
-        }
+        $scope.stepsForDirections = ['', '', ''];
 
-        $scope.stepsForDirections = ['', '', '', '', ''];
-        $scope.translateSteps = function() {
+        $scope.translateSteps = async function() {
             $scope.ifStepsTranslated = true;
-            $scope.stepsForDirections.forEach( (step, i) => {
-                translateText(step, 'receiver');
-                console.log($scope.stepsTranslated);
-            });
+            $scope.stepsTranslated = await translateText($scope.steps, 'giver');
+
+            // Update view after async/await
+            $scope.$apply();
         }
-
-        $scope.stepsTranslated = [];
-
     }
 ]);
