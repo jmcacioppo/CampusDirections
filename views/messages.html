@@ -1,17 +1,45 @@
 <center>
 	<h3>Messages</h3>
-	<form ng-submit="translateText()">
-		<label for="textToTranslate">{{user.receivingName}}, where do you need directions to?</label>
-		<br>
-		<input type="text" ng-model="textToTranslate"/>
-		<br>
-		<button class="unselectedButton" type="submit">
-			Translate Text
-		</button>
-	</form>
-	<div ng-repeat="message in messages track by $index" ng-class="{'right': $index % 2 == 0}">
-		{{ message }}
+	<div class="container">
+		<form ng-submit="translateText(receiverTextToTranslate)" class="item">
+			<label for="textToTranslate">
+				{{user.receivingName}}, where do you <br> need directions to?
+			</label>
+			<br> <br>
+			<div ng-repeat="message in receivingMessages track by $index">
+				{{ message.userName }}: {{ message.originalText }}
+				<br>
+				TRANSLATED: {{ message.translatedText }}
+				<br> <br>
+			</div>
+			<br>
+			<textarea type="text" ng-model="receiverTextToTranslate"></textarea>
+			<br> <br>
+			<button class="unselectedButton" type="submit">
+				Send {{user.givingName}} Message
+			</button>
+		</form>
+	
+		<form ng-submit="translateText(giverTextToTranslate)" class="item">
+			<label for="textToTranslate">
+				{{user.givingName}}, help <br> {{user.receivingName}} get directions
+			</label>
+			<br> <br>
+			<div ng-repeat="message in givingMessages track by $index">
+				{{ message.userName }}: {{ message.originalText }}
+				<br>
+				TRANSLATED: {{ message.translatedText }}
+				<br> <br>
+			</div>
+			<br>
+			<textarea type="text" ng-model="giverTextToTranslate"></textarea>
+			<br> <br>
+			<button class="unselectedButton" type="submit">
+				Send {{user.receivingName}} Message
+			</button>
+		</form>
 	</div>
+
 	<br>
 	<button class="unselectedButton" href="https://ufl.qualtrics.com/jfe/form/SV_3OTuo9bblZAOyON">
 		Complete Interaction

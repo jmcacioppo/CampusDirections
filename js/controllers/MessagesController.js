@@ -1,7 +1,8 @@
 campusDirections.controller('MessagesController', ['$scope', 'Messages', 'TransferData', 'Notification', '$location', '$http', 'TRANSLATOR_SUBSCRIPTION',
     function($scope, Messages, TransferData, Notification, $location, $http, TRANSLATOR_SUBSCRIPTION) {        
         // Message Inbox 
-        $scope.messages = [];
+        $scope.receivingMessages = [];
+        $scope.givingMessages = [];
         $scope.user = TransferData.getUser();
         setLanguages();
 
@@ -37,13 +38,19 @@ campusDirections.controller('MessagesController', ['$scope', 'Messages', 'Transf
             return code;
         }
 
-        $scope.translateText = function() {
+        $scope.translateText = function(textToTranslate) {
             var languageCode = '';
             
-            if($scope.messages.length % 2 == 0) languageCode = $scope.receiveCode;
-            else languageCode = $scope.giveCode;
+            if($scope.receivingMessages.length % 2 == 1) {
+                languageCode = $scope.receiveCode;
+                $scope.userName = $scope.user.givingName;
+            }
+            else {
+                languageCode = $scope.giveCode;
+                $scope.userName = $scope.user.receivingName;
+            }
             
-            setURLForAPI(languageCode, $scope.textToTranslate);
+            setURLForAPI(languageCode, textToTranslate);
 
             var dataForPOST = {
                 key : TRANSLATOR_SUBSCRIPTION.key,
@@ -51,7 +58,7 @@ campusDirections.controller('MessagesController', ['$scope', 'Messages', 'Transf
                 path: $scope.path
             }
             
-            translateAPICall(dataForPOST);
+            translateAPICall(dataForPOST, textToTranslate);
         }
 
         function setURLForAPI(languageCode, textToTranslate) {
@@ -63,34 +70,18 @@ campusDirections.controller('MessagesController', ['$scope', 'Messages', 'Transf
             $scope.path = '/V2/Http.svc/Translate' + params;
         }
         
-        function translateAPICall(dataForPOST) {
+        function translateAPICall(dataForPOST, textToTranslate) {
             $http.post('http://localhost:3000/api/translate', dataForPOST)
                 .then( (response) => {
-                    $scope.messages.push(response.data);
+                    $scope.receivingMessages.push({
+                        'userName': $scope.userName,
+                        'originalText': textToTranslate,
+                        'translatedText': response.data
+                    });
                 })
                 .catch( (err) => {
                     console.log(err);
                 });
         }
-
-        
-
-        // User 
-        // Messages.user({ 
-        //     id: $scope.user.name, 
-        //     name : $scope.user.name 
-        // });
-
-        // // Receive Messages 
-        // Messages.receive(function(message){
-        //     $scope.messages.push(message);
-        //     //message.remove();
-        // });
-
-        // Send Messages 
-        // $scope.send = function() {
-        //     Messages.send({ data : $scope.textbox });
-        //     $scope.textbox = '';
-        // };
     }
 ]);
