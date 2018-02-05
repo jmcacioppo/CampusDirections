@@ -10,6 +10,14 @@ html {
 
 .item {
 	padding: 0px 30px;
+	width: 20%;
+}
+
+.receivingMessage, .givingMessage {
+	background-color: #95A5A6;
+	border-radius: 5%;
+	color: white;
+	padding: 5px;
 }
 
 .right {

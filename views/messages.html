@@ -1,47 +1,94 @@
 <center>
-	<h3>Messages</h3>
+	<h2>Directions Request and Translation</h2>
+	<div>
+		<strong>{{user.receivingName.toUpperCase()}}</strong>, enter your directions request:
+		<br>
+		I need directions from 
+		<input ng-model="directionsFrom"> to <input ng-model="directionsTo">
+		<br> <br>
+		<button class="unselectedButton" ng-click="directionsRequest()">
+			Submit Request
+		</button>
+	</div>
+	<br> <br>
+	<div ng-show="directionsRequested">
+		<strong>{{user.givingName.toUpperCase()}}</strong>, {{user.receivingName}} needs directions from
+		<u>{{directionsFrom}}</u> to <u>{{directionsTo}}</u>. <br> Provide the steps for {{user.receivingName}} to do so:
+		<br>
+		<div ng-repeat="step in stepsForDirections track by $index">
+			Step {{ $index + 1 }}: <input ng-model="stepsForDirections[$index]"/>
+		</div>
+		<br>
+		<button class="unselectedButton" ng-click="stepsForDirections.pop()">
+			Remove Step
+		</button>
+		<button class="unselectedButton" ng-click="stepsForDirections.push('')">
+			Add Step
+		</button>
+		<br> <br>
+		<button class="unselectedButton" ng-click="translateSteps()">
+			Translate Steps
+		</button>
+		<div ng-show="ifStepsTranslated" ng-repeat="step in stepsTranslated">
+			{{ $index + 1 }}: {{ stepsTranslated[stepsTranslated.length - $index - 1] }}
+		</div>
+	</div>
+
+	<!-- <br> <br> <br>
+
 	<div class="container">
-		<form ng-submit="translateText(receiverTextToTranslate)" class="item">
+		<form ng-submit="translateText(receiverTextToTranslate, 'receiver')" class="item">
 			<label for="textToTranslate">
 				{{user.receivingName}}, where do you <br> need directions to?
 			</label>
 			<br> <br>
 			<div ng-repeat="message in receivingMessages track by $index">
-				{{ message.userName }}: {{ message.originalText }}
-				<br>
-				TRANSLATED: {{ message.translatedText }}
-				<br> <br>
+				<div class="receivingMessage">
+					{{ user.receivingName }}: {{ message.originalText }}
+					<br> <br>
+					Translated: {{ message.translatedText }}
+					<br> <br>
+				</div>
 			</div>
 			<br>
 			<textarea type="text" ng-model="receiverTextToTranslate"></textarea>
 			<br> <br>
 			<button class="unselectedButton" type="submit">
-				Send {{user.givingName}} Message
+				Send Message
 			</button>
 		</form>
 	
-		<form ng-submit="translateText(giverTextToTranslate)" class="item">
+		<form ng-submit="translateText(giverTextToTranslate, 'giver')" class="item">
 			<label for="textToTranslate">
 				{{user.givingName}}, help <br> {{user.receivingName}} get directions
 			</label>
 			<br> <br>
 			<div ng-repeat="message in givingMessages track by $index">
-				{{ message.userName }}: {{ message.originalText }}
-				<br>
-				TRANSLATED: {{ message.translatedText }}
-				<br> <br>
+				<div class="givingMessage">
+					{{ user.givingName }}: {{ message.originalText }}
+					<br> <br>
+					Translated: {{ message.translatedText }}
+					<br> <br>
+				</div>
 			</div>
 			<br>
 			<textarea type="text" ng-model="giverTextToTranslate"></textarea>
 			<br> <br>
 			<button class="unselectedButton" type="submit">
-				Send {{user.receivingName}} Message
+				Send Message
 			</button>
 		</form>
-	</div>
-
-	<br>
-	<button class="unselectedButton" href="https://ufl.qualtrics.com/jfe/form/SV_3OTuo9bblZAOyON">
-		Complete Interaction
-	</button>
+	</div> -->
+	<br> 
+	<a ng-href="/">
+		<button class="unselectedButton">
+			Back
+		</button>
+	</a>
+	<br> <br>
+	<a ng-show="ifStepsTranslated" href="https://ufl.qualtrics.com/jfe/form/SV_3OTuo9bblZAOyON" target="_blank">
+		<button class="unselectedButton">
+			Complete Interaction
+		</button>
+	</a>
 </center>
