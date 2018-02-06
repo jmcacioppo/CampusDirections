@@ -2,37 +2,38 @@
 	<h2>Directions Request and Translation</h2>
 	<div class="container">
 		<div class="item">
-			<strong>{{user.receivingName.toUpperCase()}}</strong>, enter your directions request:
+			<strong>{{user.receivingName.toUpperCase()}}</strong>{{translatedReceiverText1}}
 			<br> <br>
-			I need directions from 
+			{{translatedReceiverText2}}
 			<br>
-			<input ng-model="directionsFrom" class="directionsInputs"> to <input ng-model="directionsTo" class="directionsInputs">
+			<input ng-model="directionsFrom" class="directionsInputs"> --> <input ng-model="directionsTo" class="directionsInputs">
 			<br> <br>
 			<button class="unselectedButton" ng-click="directionsRequested = true">
-				Submit Request
+				{{translatedReceiverButtonText}}
 			</button>
 		</div>
 
 		<br> <br>
 
 		<div class="item" ng-show="directionsRequested">
-			<strong>{{user.givingName.toUpperCase()}}</strong>, {{user.receivingName}} needs directions from
+			<strong>{{user.givingName.toUpperCase()}}</strong>, {{user.receivingName}}
+			{{translatedGiverText1}}
 			<br>
-			<u>{{directionsFrom}}</u> to <u>{{directionsTo}}</u>. 
+			<u>{{directionsFrom}}</u> --> <u>{{directionsTo}}</u>. 
 			<br> <br>
-			Provide the steps for {{user.receivingName}} to do so:
+			{{translatedGiverText2}}
 			<br>
 			<textarea ng-model="steps" style="width: 80%; height: 20%"></textarea>
 			<br> <br>
 			<button class="unselectedButton" ng-click="translateSteps()">
-				Translate Steps
+				{{translatedGiverButtonText}}
 			</button>
 			<br> <br>
 		</div>
 	</div>
 
 	<div ng-show="ifStepsTranslated">
-		<h2>Translated Steps:</h2>
+		<h2>{{translatedReceiverStepsHeader}}</h2>
 		<p style="width: 50%">
 			{{ stepsTranslated }}
 		</p>
@@ -45,8 +46,9 @@
 		</button>
 	</a>
 	<a ng-show="ifStepsTranslated" href="https://ufl.qualtrics.com/jfe/form/SV_3OTuo9bblZAOyON" target="_blank">
-		<button class="unselectedButton">
+		<button class="unselectedButton" style="width: 11em">
 			Complete Interaction
 		</button>
 	</a>
+	<br> <br> <br>
 </center>

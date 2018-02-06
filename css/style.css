@@ -30,16 +30,15 @@ html {
 }
 
 .unselectedButton {
-	background-color: #BDC3C7;
-	color: white;
-}
-
-.selectedButton {
-	background-color: #7F8C8D;
+	background-color: #f88379;
 	color: white;
 }
 
 .unselectedButton:hover {
-	background-color: #95A5A6;
+	background-color: #4d8774;
 	cursor: pointer;
+}
+
+a {
+	text-decoration: none;
 }
