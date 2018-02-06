@@ -24,6 +24,9 @@
     "angular-route": "^1.6.8",
     "angular-ui-notification": "^0.3.6",
     "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "https": "^1.0.0",
+    "path": "^0.12.7",
     "rltm": "^1.3.1"
   }
 }
