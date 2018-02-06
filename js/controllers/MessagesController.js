@@ -1,8 +1,9 @@
-campusDirections.controller('MessagesController', ['$scope', 'Messages', 'TransferData', 'Notification', '$location', '$http', 'TRANSLATOR_SUBSCRIPTION',
-    function($scope, Messages, TransferData, Notification, $location, $http, TRANSLATOR_SUBSCRIPTION) {
+campusDirections.controller('MessagesController', ['$scope', 'TransferData', 'Notification', '$location', '$http', 'TRANSLATOR_SUBSCRIPTION',
+    function($scope, TransferData, Notification, $location, $http, TRANSLATOR_SUBSCRIPTION) {
         $scope.loadingComplete = false;
         setTimeout(function() {
-            $scope.loadingComplete = true
+            $scope.loadingComplete = true;
+            $scope.$apply();
         }, 2000);
 
         // Initializing values
@@ -100,7 +101,7 @@ campusDirections.controller('MessagesController', ['$scope', 'Messages', 'Transf
         }
         
         async function translateAPICall(dataForPOST, textToTranslate) {
-            return await $http.post('http://localhost:3000/api/translate', dataForPOST)
+            return await $http.post('/api/translate', dataForPOST)
                 .then( (response) => {
                     return response.data;
                 })
