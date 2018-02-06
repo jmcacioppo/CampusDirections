@@ -1,7 +1,16 @@
 campusDirections.controller('MessagesController', ['$scope', 'Messages', 'TransferData', 'Notification', '$location', '$http', 'TRANSLATOR_SUBSCRIPTION',
     function($scope, Messages, TransferData, Notification, $location, $http, TRANSLATOR_SUBSCRIPTION) {
+        $scope.loadingComplete = false;
+        setTimeout(function() {
+            $scope.loadingComplete = true
+        }, 2000);
+
+        // Initializing values
         $scope.user = TransferData.getUser();
+        $scope.directionsRequested = false;
+        $scope.ifStepsTranslated = false;
         setLanguages();
+        getAllText();
 
         function setLanguages() {
             $scope.receiveCode = setLanguageCode($scope.user.receiveLanguage);
@@ -35,32 +44,35 @@ campusDirections.controller('MessagesController', ['$scope', 'Messages', 'Transf
             return code;
         }
 
-        let receiverText1 = ", enter your directions request: ";
-        let receiverText2 = "I need directions from ";
-        let receiverButtonText = "Submit Request";
-        let receiverStepsHeader = "Translated Steps: ";
-
-        let giverText1 = " needs directions from ";
-        let giverText2 = "Provide the directions here: ";
-        let giverButtonText = "Translate Steps";
-
         async function getAllText() {
+            let receiverText1 = ", enter your directions request: ";
+            let receiverText2 = "I need directions from ";
+            let receiverButtonText = "Submit Request";
+            let receiverStepsHeader = "Translated Steps for ";
+            let receiverAnyQuestions = "Do you have any more questions for ";
+            let receiverAskQuestion = "Ask Question";
+    
+            let giverText1 = " needs directions from ";
+            let giverText2 = "Provide the directions here: ";
+            let giverButtonText = "Translate Steps";
+            let giverAnswerQuestion = "Answer above in directions box.";
+
             $scope.translatedReceiverText1 = await translateText(receiverText1, "giver");
             $scope.translatedReceiverText2 = await translateText(receiverText2, "giver");
             $scope.translatedReceiverButtonText = await translateText(receiverButtonText, "giver");
             $scope.translatedReceiverStepsHeader = await translateText(receiverStepsHeader, "giver");
-
+            $scope.translatedReceiverAnyQuestions = await translateText(receiverAnyQuestions, "giver");
+            $scope.translatedReceiverAskQuestion = await translateText(receiverAskQuestion, "giver");
+ 
             $scope.translatedGiverText1 = await translateText(giverText1, "receiver");
             $scope.translatedGiverText2 = await translateText(giverText2, "receiver");
             $scope.translatedGiverButtonText = await translateText(giverButtonText, "receiver");
-        
+            $scope.translatedGiverAnswerQuestion = await translateText(giverAnswerQuestion, "receiver");
+            
             // Update view after async/await
             $scope.$apply();
         }
-
-        getAllText();
         
-
         async function translateText(textToTranslate, receiverOrGiver) {
             var languageCode = '';
             
@@ -97,13 +109,17 @@ campusDirections.controller('MessagesController', ['$scope', 'Messages', 'Transf
                 });
         }
 
-        $scope.directionsRequested = false;
-        $scope.ifStepsTranslated = false;
-        $scope.stepsForDirections = ['', '', ''];
-
         $scope.translateSteps = async function() {
             $scope.ifStepsTranslated = true;
             $scope.stepsTranslated = await translateText($scope.steps, 'giver');
+    
+            // Update view after async/await
+            $scope.$apply();
+        }
+
+        $scope.askQuestion = async function() {
+            $scope.translatedQuestion = await translateText($scope.receiverQuestion, "receiver");
+            $scope.questionAsked = true;
 
             // Update view after async/await
             $scope.$apply();
