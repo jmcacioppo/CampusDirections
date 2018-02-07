@@ -25,20 +25,74 @@ campusDirections.controller('MessagesController', ['$scope', 'TransferData', 'No
                 case 'Arabic': 
                     code = 'ar'; 
                     break;
+                case 'Bosnian': 
+                    code = 'bs'; 
+                    break;
+                case 'Cantonese': 
+                    code = 'yue'; 
+                    break;
+                case 'Chinese Traditional': 
+                    code = 'zn-Hant'; 
+                    break;
+                case 'Croation': 
+                    code = 'hr'; 
+                    break;
+                case 'Czech': 
+                    code = 'cs'; 
+                    break;
+                case 'Dutch': 
+                    code = 'nl'; 
+                    break;
                 case 'English': 
                     code = 'en'; 
+                    break;
+                case 'Filipino': 
+                    code = 'fil'; 
                     break;
                 case 'French': 
                     code = 'fr'; 
                     break;
+                case 'German': 
+                    code = 'de'; 
+                    break;
+                case 'Greek': 
+                    code = 'el'; 
+                    break;
+                case 'Hindi': 
+                    code = 'hi'; 
+                    break;
                 case 'Italian': 
                     code = 'it'; 
+                    break;
+                case 'Japanese': 
+                    code = 'ja'; 
+                    break;
+                case 'Korean': 
+                    code = 'ko'; 
+                    break;
+                case 'Polish': 
+                    code = 'pl'; 
                     break;
                 case 'Portuguese': 
                     code = 'pt'; 
                     break;
+                case 'Russian': 
+                    code = 'ru'; 
+                    break;
                 case 'Spanish': 
                     code = 'es'; 
+                    break;
+                case 'Swedish': 
+                    code = 'sv'; 
+                    break;
+                case 'Thai': 
+                    code = 'th'; 
+                    break;
+                case 'Turkish': 
+                    code = 'tr'; 
+                    break;
+                case 'Vietnamese': 
+                    code = 'vi'; 
                     break;
             }
 
